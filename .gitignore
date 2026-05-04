@@ -1,0 +1,138 @@
+# ============================================
+# Gitignore para Projetos ASIC/FPGA
+# Mantém código fonte, constraints e scripts
+# Ignora apenas arquivos gerados/compilados
+# ============================================
+
+# Simulação (arquivos gerados)
+*.vvp
+*.vcd
+*.fst
+*.fsdb
+*.shm
+*.wlf
+*.ghw
+*.vpd
+*.trn
+*.vcd.gz
+
+# Logs e relatórios temporários
+*.log
+*.tmp
+*.bak
+*.backup
+*~
+*.swp
+*.swo
+
+# FPGA - Quartus (arquivos gerados)
+fpga/quartus/output_files/*.sof
+fpga/quartus/output_files/*.rbf
+fpga/quartus/output_files/*.elf
+fpga/quartus/output_files/*.map
+fpga/quartus/output_files/*.summary
+fpga/quartus/db/
+fpga/quartus/incremental_db/
+fpga/quartus/.qsys_edit/
+fpga/bitstream/*.sof
+fpga/bitstream/*.rbf
+fpga/quartus/*.qpf.bak
+fpga/quartus/*.qsf.bak
+
+# FPGA - Vivado
+fpga/vivado/*.jou
+fpga/vivado/*.log
+fpga/vivado/.Xil/
+fpga/vivado/*.str
+fpga/vivado/*.webtalk
+fpga/vivado/*.wdb
+fpga/vivado/hls/.autopilot/
+
+# ASIC - Synopsys/Cadence (arquivos gerados)
+asic/netlist/*.vg
+asic/netlist/*.v
+asic/reports/
+asic/logs/
+asic/def/*.def
+asic/odb/*.odb
+asic/gds/*.gds
+asic/gds/*.gds2
+asic/magic/*.mag
+asic/magic/*.spice
+asic/magic/*.ext
+
+# Backend (arquivos gerados pelo P&R)
+backend/def/*.def
+backend/odb/*.odb
+backend/gds/*.gds
+backend/gds/*.gds2
+backend/netlist/*.vg
+backend/netlist/*.v
+backend/reports/
+backend/logs/
+backend/lef/
+backend/lib/
+
+# Frontend (arquivos gerados pela síntese)
+frontend/netlist/*.vg
+frontend/netlist/*.v
+frontend/reports/
+
+# Formal verification (arquivos gerados)
+formal/netlist/
+formal/reports/
+
+# Diretórios de build temporários
+sim/rtl/*.vcd
+sim/gl/*.vcd
+sim/waves/*.vcd
+sim/waves/*.fsdb
+sim/waves/*.wlf
+
+# Documentação compilada (mantém os fontes .md/.tex/.docx)
+docs/**/*.pdf
+docs/**/*.aux
+docs/**/*.out
+docs/**/*.log
+docs/**/*.toc
+docs/**/*.bbl
+docs/**/*.blg
+docs/**/*.synctex.gz
+
+# Imagens geradas (mantém as imagens fonte)
+docs/imagens/*.png
+docs/imagens/*.jpg
+docs/imagens/*.jpeg
+*.png
+*.jpg
+*.jpeg
+
+# Arquivos de projeto específicos do editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python (se usar scripts auxiliares)
+__pycache__/
+*.py[cod]
+*.pyc
+.pytest_cache/
+
+# Mantém arquivos de configuração importantes
+!*.tcl
+!*.qsf
+!*.qpf
+!*.sdc
+!*.xdc
+!*.lib
+!*.lef
+!*.tech
+
+# Mantém diretórios vazios (para estrutura)
+!*/.**/
+!.gitkeep
