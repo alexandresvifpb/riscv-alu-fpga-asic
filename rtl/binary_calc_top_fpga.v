@@ -4,7 +4,7 @@ module binary_calc_top_fpga (
 
     input CLOCK_50,
     input [9:0] SW,
-    input [3:0] KEY,
+    input [1:0] KEY,
 
     output [9:0] LEDR
 );
