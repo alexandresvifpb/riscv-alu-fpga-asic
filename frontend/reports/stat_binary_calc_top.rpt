@@ -1,0 +1,26 @@
+
+11. Printing statistics.
+
+=== binary_calc_top ===
+
+   Number of wires:                124
+   Number of wire bits:            174
+   Number of public wires:          46
+   Number of public wire bits:      96
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                106
+     $_ANDNOT_                      35
+     $_AND_                          3
+     $_DFF_P_                        3
+     $_MUX_                          8
+     $_NAND_                         3
+     $_NOR_                          6
+     $_NOT_                          4
+     $_ORNOT_                        5
+     $_OR_                          13
+     $_SDFFE_PN0P_                  17
+     $_XNOR_                         4
+     $_XOR_                          5
+

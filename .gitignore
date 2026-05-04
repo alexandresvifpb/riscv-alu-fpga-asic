@@ -1,7 +1,5 @@
 # ============================================
 # Gitignore para Projetos ASIC/FPGA
-# Mantém código fonte, constraints e scripts
-# Ignora apenas arquivos gerados/compilados
 # ============================================
 
 # Simulação (arquivos gerados)
@@ -14,9 +12,11 @@
 *.ghw
 *.vpd
 *.trn
-*.vcd.gz
+sim/rtl/
+sim/gl/
+sim/waves/
 
-# Logs e relatórios temporários
+# Logs e temporários
 *.log
 *.tmp
 *.bak
@@ -26,113 +26,117 @@
 *.swo
 
 # FPGA - Quartus (arquivos gerados)
-fpga/quartus/output_files/*.sof
-fpga/quartus/output_files/*.rbf
-fpga/quartus/output_files/*.elf
-fpga/quartus/output_files/*.map
-fpga/quartus/output_files/*.summary
+fpga/quartus/output_files/
 fpga/quartus/db/
 fpga/quartus/incremental_db/
-fpga/quartus/.qsys_edit/
-fpga/bitstream/*.sof
-fpga/bitstream/*.rbf
-fpga/quartus/*.qpf.bak
-fpga/quartus/*.qsf.bak
+fpga/bitstream/
+fpga/quartus/*.bak
 
-# FPGA - Vivado
-fpga/vivado/*.jou
+# FPGA - Vivado (se usado)
 fpga/vivado/*.log
 fpga/vivado/.Xil/
-fpga/vivado/*.str
-fpga/vivado/*.webtalk
 fpga/vivado/*.wdb
-fpga/vivado/hls/.autopilot/
 
-# ASIC - Synopsys/Cadence (arquivos gerados)
-asic/netlist/*.vg
-asic/netlist/*.v
+# ASIC (arquivos gerados)
+asic/netlist/
 asic/reports/
 asic/logs/
-asic/def/*.def
-asic/odb/*.odb
-asic/gds/*.gds
-asic/gds/*.gds2
-asic/magic/*.mag
-asic/magic/*.spice
-asic/magic/*.ext
+asic/def/
+asic/odb/
+asic/gds/
+asic/magic/
 
-# Backend (arquivos gerados pelo P&R)
-backend/def/*.def
-backend/odb/*.odb
-backend/gds/*.gds
-backend/gds/*.gds2
-backend/netlist/*.vg
-backend/netlist/*.v
+# Backend (arquivos gerados)
+backend/def/
+backend/odb/
+backend/gds/
+backend/netlist/
 backend/reports/
 backend/logs/
-backend/lef/
-backend/lib/
-
-# Frontend (arquivos gerados pela síntese)
-frontend/netlist/*.vg
-frontend/netlist/*.v
-frontend/reports/
 
 # Formal verification (arquivos gerados)
 formal/netlist/
 formal/reports/
 
-# Diretórios de build temporários
-sim/rtl/*.vcd
-sim/gl/*.vcd
-sim/waves/*.vcd
-sim/waves/*.fsdb
-sim/waves/*.wlf
-
-# Documentação compilada (mantém os fontes .md/.tex/.docx)
+# Documentação compilada
 docs/**/*.pdf
 docs/**/*.aux
-docs/**/*.out
 docs/**/*.log
-docs/**/*.toc
-docs/**/*.bbl
-docs/**/*.blg
-docs/**/*.synctex.gz
 
-# Imagens geradas (mantém as imagens fonte)
-docs/imagens/*.png
-docs/imagens/*.jpg
-docs/imagens/*.jpeg
-*.png
-*.jpg
-*.jpeg
-
-# Arquivos de projeto específicos do editor
+# Editor
 .vscode/
 .idea/
 *.sublime-*
 
-# Arquivos temporários do sistema
+# Sistema
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Python (se usar scripts auxiliares)
+# Python
 __pycache__/
 *.py[cod]
-*.pyc
 .pytest_cache/
 
-# Mantém arquivos de configuração importantes
+# ============================================
+# EXCEÇÕES - Arquivos importantes
+# ============================================
+
+# Netlist do frontend (resultado da síntese)
+!frontend/netlist/*.v
+
+# Relatórios do frontend
+!frontend/reports/*.rpt
+!frontend/reports/*.json
+!frontend/reports/*.dot
+!frontend/reports/*.png
+!frontend/reports/*.pdf
+!frontend/reports/synth_frontend.log
+
+# Relatórios da formal
+
+# Scripts e constraints
 !*.tcl
+!*.ys
 !*.qsf
 !*.qpf
 !*.sdc
 !*.xdc
-!*.lib
-!*.lef
-!*.tech
 
-# Mantém diretórios vazios (para estrutura)
-!*/.**/
+# Mantém diretórios vazios
+!.gitkeep
+
+
+# Exceções para formal/reports
+
+# Exceções para formal/reports
+
+# ============================================
+# EXCEÇÕES - Arquivos importantes
+# ============================================
+
+# Netlist do frontend (resultado da síntese)
+!frontend/netlist/*.v
+
+# Relatórios do frontend
+!frontend/reports/*.rpt
+!frontend/reports/*.json
+!frontend/reports/*.dot
+!frontend/reports/*.png
+!frontend/reports/*.pdf
+!frontend/reports/synth_frontend.log
+
+# Relatórios da formal
+!formal/reports/*.log
+!formal/reports/*.rpt
+
+# Scripts e constraints
+!*.tcl
+!*.ys
+!*.qsf
+!*.qpf
+!*.sdc
+!*.xdc
+
+# Mantém diretórios vazios
 !.gitkeep

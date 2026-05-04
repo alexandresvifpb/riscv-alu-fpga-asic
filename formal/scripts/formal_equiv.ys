@@ -1,0 +1,85 @@
+# =====================================================
+# Formal Equivalence Check
+# RTL vs Synthesized Netlist
+# Projeto: Calculadora Binária 4 bits
+# =====================================================
+
+# -----------------------------------------------------
+# GOLD (RTL Original)
+# -----------------------------------------------------
+
+# Ler os arquivos RTL originais
+read_verilog rtl/alu.v
+read_verilog rtl/input_register.v
+read_verilog rtl/output_register.v
+read_verilog rtl/binary_calc_top.v
+
+# Definir hierarquia e top module
+hierarchy -top binary_calc_top
+
+# Flatten (remove hierarquia para equivalência)
+flatten
+
+# Converter processos (always) para células lógicas
+proc
+memory
+memory_map
+opt
+
+# Salvar como design de referência (GOLD)
+design -stash gold
+
+
+# -----------------------------------------------------
+# GATE (Synthesized Netlist)
+# -----------------------------------------------------
+
+# Ler o netlist gerado pela síntese
+read_verilog frontend/netlist/binary_calc_top_formal.v
+
+# Definir hierarquia
+hierarchy -top binary_calc_top
+
+# Converter processos
+proc
+memory
+memory_map
+opt
+
+# Salvar como design da gate (GATE)
+design -stash gate
+
+
+# -----------------------------------------------------
+# Construir equivalência
+# -----------------------------------------------------
+
+# Recuperar ambos os designs
+design -copy-from gold -as gold binary_calc_top
+design -copy-from gate -as gate binary_calc_top
+
+# Criar módulo de equivalência
+equiv_make gold gate equiv
+
+
+# -----------------------------------------------------
+# Verificação formal
+# -----------------------------------------------------
+
+# Preparar o módulo de equivalência
+prep -top equiv
+
+# Verificação simples (SAT)
+equiv_simple
+
+# Verificação por indução
+equiv_induct
+
+# Exibir status da equivalência
+equiv_status -assert
+
+
+# -----------------------------------------------------
+# Salvar relatório
+# -----------------------------------------------------
+tee -o formal/reports/formal_equiv.rpt stat

@@ -1,0 +1,31 @@
+# =====================================================
+# Síntese Frontend - Calculadora Binária 4 bits
+# Projeto: riscv_alu_fpga_asic
+# =====================================================
+
+# 1. Ler todos os arquivos RTL do projeto
+read_verilog rtl/alu.v
+read_verilog rtl/input_register.v
+read_verilog rtl/output_register.v
+read_verilog rtl/binary_calc_top.v
+
+# 2. Definir o módulo principal (Top Level)
+# O top-level ASIC-ready é binary_calc_top (sem FPGA wrapper)
+synth -top binary_calc_top
+
+# 3. Planificar a hierarquia (importante para o backend)
+flatten
+opt
+
+# 4. Limpar células não utilizadas e otimizar
+clean
+check
+
+# 5. Salvar o Netlist do Frontend (Verilog estrutural)
+write_verilog -noattr frontend/netlist/binary_calc_top_frontend.v
+
+# 6. Salvar em JSON para visualização (opcional/diagramas)
+write_json frontend/reports/binary_calc_top.json
+
+# 7. Gerar relatório de estatísticas (portas lógicas utilizadas)
+tee -o frontend/reports/stat_binary_calc_top.rpt stat
